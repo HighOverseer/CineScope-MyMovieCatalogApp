@@ -1,4 +1,4 @@
-package com.fajar.cinescope.core.domain
+package com.fajar.cinescope.core.domain.model
 
 typealias RootNetworkError = DataError.NetworkError.ApiError
 
