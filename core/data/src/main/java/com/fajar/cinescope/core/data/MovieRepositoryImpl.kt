@@ -6,8 +6,9 @@ import com.fajar.cinescope.core.domain.model.MovieCategory
 import com.fajar.cinescope.core.domain.model.MoviePreviewsItemData
 import com.fajar.cinescope.core.domain.model.Result
 import com.fajar.cinescope.core.domain.repository.MovieRepository
+import javax.inject.Inject
 
-internal class MovieRepositoryImpl(
+internal class MovieRepositoryImpl @Inject constructor(
     private val remoteDataSource: MovieRemoteDataSource
 ) : MovieRepository {
 

@@ -2,7 +2,6 @@ package com.fajar.cinescope.core.common
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 
 interface DispatcherProvider {
     val main: CoroutineDispatcher
@@ -10,7 +9,7 @@ interface DispatcherProvider {
     val default: CoroutineDispatcher
 }
 
-internal class DispatcherProviderImpl : DispatcherProvider {
+internal object DispatcherProviderImpl : DispatcherProvider {
     override val main: CoroutineDispatcher
         get() = Dispatchers.Main.immediate
     override val io: CoroutineDispatcher

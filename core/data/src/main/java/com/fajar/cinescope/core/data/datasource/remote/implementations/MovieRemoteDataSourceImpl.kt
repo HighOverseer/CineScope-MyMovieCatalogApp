@@ -11,8 +11,9 @@ import com.fajar.cinescope.core.domain.model.MoviePreviewsItemData
 import com.fajar.cinescope.core.domain.model.Result
 import com.fajar.cinescope.core.domain.model.RootNetworkError
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-internal class MovieRemoteDataSourceImpl(
+internal class MovieRemoteDataSourceImpl @Inject constructor(
     private val apiService: MovieAPIService,
     private val dispatcherProvider: DispatcherProvider,
     private val mapperToDomain: MapperToDomain

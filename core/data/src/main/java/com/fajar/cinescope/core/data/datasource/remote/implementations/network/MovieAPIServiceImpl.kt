@@ -4,8 +4,9 @@ import com.fajar.cinescope.core.data.datasource.remote.implementations.network.c
 import com.fajar.cinescope.core.data.datasource.remote.implementations.network.dto.GetListMoviePreviewsResponseDTO
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
+import javax.inject.Inject
 
-internal class MovieAPIServiceImpl(
+internal class MovieAPIServiceImpl @Inject constructor(
     private val httpClient: HttpClient
 ) : MovieAPIService, DefaultAPIServiceScope() {
 
