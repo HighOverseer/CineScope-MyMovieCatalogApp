@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="an_error_occurred_please_try_again">Something went wrong, please try again.</string>
+    <string name="an_error_occurred_please_check_your_connectivity">An error occurred, please check your internet connection.</string>
+    <string name="sorry_something_went_wrong_please_check_your_connection">Sorry, it seems something went wrong. Please check your internet connection.</string>
+    <string name="an_error_occurred_check_your_connectivity_or_try_again_later">An error occurred. Please check your internet connection or try again later.</string>
+    <string name="an_error_occurred_please_try_again_later">An error occurred. Please try again later.</string>
+    <string name="sorry_the_server_seems_busy_please_try_again_later">Sorry, the server seems to be busy. Please try again later.</string>
+    <string name="invalid_session_please_try_again">Your session is invalid. Please try again.</string>
+    <string name="okay">Okay</string>
+</resources>
