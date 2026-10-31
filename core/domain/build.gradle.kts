@@ -12,7 +12,7 @@ kotlin {
     android {
         namespace = "com.fajar.cinescope.core.domain"
         compileSdk {
-            version = release(36) {
+            version = release(37) {
                 minorApiLevel = 1
             }
         }
