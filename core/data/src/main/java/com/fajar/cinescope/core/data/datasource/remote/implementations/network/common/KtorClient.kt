@@ -1,4 +1,4 @@
-package com.fajar.cinescope.core.data.network
+package com.fajar.cinescope.core.data.datasource.remote.implementations.network.common
 
 
 import com.fajar.cinescope.core.data.BuildConfig
@@ -19,7 +19,7 @@ internal class KtorClient(
     httpClientEngine: HttpClientEngine = OkHttp.create(),
 ) {
 
-    val client = HttpClient(httpClientEngine) {
+    val client: HttpClient = HttpClient(httpClientEngine) {
         install(ContentNegotiation) {
             json(
                 contentType = ContentType.Application.Json,

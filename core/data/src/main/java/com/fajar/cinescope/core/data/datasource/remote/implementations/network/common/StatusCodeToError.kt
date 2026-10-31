@@ -1,8 +1,8 @@
-package com.fajar.cinescope.core.data.network
+package com.fajar.cinescope.core.data.datasource.remote.implementations.network.common
 
-import com.fajar.cinescope.core.domain.DataError
-import com.fajar.cinescope.core.domain.Result
-import com.fajar.cinescope.core.domain.RootNetworkError
+import com.fajar.cinescope.core.domain.model.DataError
+import com.fajar.cinescope.core.domain.model.Result
+import com.fajar.cinescope.core.domain.model.RootNetworkError
 import io.ktor.client.network.sockets.ConnectTimeoutException
 import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.plugins.HttpRequestTimeoutException
@@ -11,7 +11,7 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import java.net.UnknownHostException
 
-val mapStatusCodeToError = hashMapOf<Int, DataError>(
+internal val mapStatusCodeToError = hashMapOf<Int, DataError>(
     HttpStatusCode.BadRequest.value to RootNetworkError.BAD_REQUEST,
     HttpStatusCode.Unauthorized.value to RootNetworkError.UNAUTHORIZED,
     HttpStatusCode.Forbidden.value to RootNetworkError.FORBIDDEN,
@@ -22,7 +22,7 @@ val mapStatusCodeToError = hashMapOf<Int, DataError>(
 )
 
 
-val mapIOExceptionToError = hashMapOf(
+internal val mapIOExceptionToError = hashMapOf(
     SocketTimeoutException::class to RootNetworkError.REQUEST_TIMEOUT,
     ConnectTimeoutException::class to RootNetworkError.NO_CONNECTIVITY_OR_SERVER_UNREACHABLE,
     HttpRequestTimeoutException::class to RootNetworkError.REQUEST_TIMEOUT,
@@ -30,7 +30,7 @@ val mapIOExceptionToError = hashMapOf(
 )
 
 
-suspend inline fun <reified M, D> callApiFromNetwork(
+internal suspend inline fun <reified M, D> callApiFromNetwork(
     execute: suspend () -> M,
     mapResponseToResultData: (M) -> D,
 ): Result<D, DataError> {
