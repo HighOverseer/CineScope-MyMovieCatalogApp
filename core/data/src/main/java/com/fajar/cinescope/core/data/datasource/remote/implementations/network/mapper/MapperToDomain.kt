@@ -20,7 +20,7 @@ internal class MapperToDomain(
                 id = id?.toLong() ?: return null,
                 title = title ?: return null,
                 thumbnailImageUrl = thumbnailImageUrl,
-                rating = voteAverage?.let { Rating(relativeScore = it, maxScore = 10.0) }
+                rating = voteAverage?.let { Rating(relativeScore = it, maxScore = 10.0, count = voteCount) },
             )
         }
     }
