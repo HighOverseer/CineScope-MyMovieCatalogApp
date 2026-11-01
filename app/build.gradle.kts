@@ -66,4 +66,7 @@ dependencies {
     // DI (Dagger Hilt)
     implementation(libs.dagger.hilt)
     ksp(libs.dagger.hilt.compiler)
+
+    // Splash Screen
+    implementation(libs.androidx.core.splashscreen)
 }
