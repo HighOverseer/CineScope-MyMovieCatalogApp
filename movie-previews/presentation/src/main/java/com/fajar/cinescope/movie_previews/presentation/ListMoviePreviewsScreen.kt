@@ -1,6 +1,5 @@
 package com.fajar.cinescope.movie_previews.presentation
 
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -39,7 +38,6 @@ import com.fajar.cinescope.core.ui.theme.Black10
 import com.fajar.cinescope.core.ui.theme.CineScopeAppTheme
 import com.fajar.cinescope.core.ui.theme.Green60
 import com.fajar.cinescope.core.ui.theme.Grey90
-import com.fajar.cinescope.core.ui.theme.Red50
 import com.fajar.cinescope.movie_previews.presentation.section.ListMoviePreviewsMainContent
 import kotlinx.collections.immutable.toImmutableList
 import com.fajar.cinescope.core.ui.R as CoreR
