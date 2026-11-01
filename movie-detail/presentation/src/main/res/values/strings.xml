@@ -8,5 +8,5 @@
     <string name="add_to_favorite_list">Add to favorite list</string>
     <string name="remove_from_favorite_list">Remove from favorite list</string>
     <string name="share_movie">Share Movie</string>
-    <string name="share_movie_intent_text">"\nCheck out %1$s on CineScope\n\n%2$s\n\nhttps:///www.themoviedb.org/movie/%3$s\n"</string>
+    <string name="share_movie_intent_text">"\nCheck out %1$s on CineScope\n\n%2$s\n\nhttps://www.themoviedb.org/movie/%3$s\n"</string>
 </resources>
