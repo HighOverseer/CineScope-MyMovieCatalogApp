@@ -50,7 +50,12 @@ android {
 dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:common"))
+    testImplementation(project(":core:test-utils"))
+
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutine.test)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.mockk)
     implementation(libs.kotlin.stdlib)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)

@@ -12,6 +12,7 @@ kotlin = "2.4.20"
 composeBom = "2026.02.01"
 kotlinStdlib = "2.2.10"
 kotlinTest = "2.2.10"
+mockk = "1.14.11"
 room3Runtime = "3.0.3"
 runner = "1.5.2"
 core = "1.5.0"
@@ -79,6 +80,7 @@ kotlinx-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immuta
 
 # Splash Screen
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+mockk = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -93,6 +95,3 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 # DI: Dagger Hilt
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt"}
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-
-# Mockkery
-mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
