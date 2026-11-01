@@ -54,10 +54,9 @@ internal class RemoteDataMapperToDomain(
                 MovieReviewData(
                     comment = it.content ?: return@mapNotNull null,
                     postedTimestamp = postedTimestamp ?: return@mapNotNull null,
-                    reviewerName = it.authorDetails?.name ?: return@mapNotNull null,
-                    reviewerUsername = it.authorDetails.username ?: return@mapNotNull null
+                    reviewerUsername = it.authorDetails?.username ?: return@mapNotNull null
                 )
-            } ?: emptyList()
+            }?.take(3) ?: emptyList()
 
         return MovieDetailData(
             id = overviewDto.id?.toLong() ?: return null,

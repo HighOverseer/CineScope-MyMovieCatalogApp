@@ -1,6 +1,5 @@
 package com.fajar.cinescope.movie_previews.presentation.section
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -96,8 +95,7 @@ internal fun PreviewBackdropLazyRowSection(
                     is ListPreviewsDataState.Loaded -> {
                         items(state.previewsData, { it.id }) { item ->
                             MoviePreviewItemBackdropCard(
-                                modifier = Modifier
-                                    .clickable { onItemClicked(item) },
+                                onClick = { onItemClicked(item) },
                                 dui = item,
                             )
                         }

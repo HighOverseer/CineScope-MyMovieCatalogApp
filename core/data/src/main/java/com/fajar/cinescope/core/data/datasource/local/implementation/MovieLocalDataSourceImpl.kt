@@ -38,4 +38,8 @@ internal class MovieLocalDataSourceImpl @Inject constructor(
     override suspend fun deleteFromListFavorite(movieId: Long) {
         return favoriteMovieDao.deleteFromListFavorite(movieId)
     }
+
+    override fun checkIsMovieInFavoriteList(movieId: Long): Flow<Boolean> {
+        return favoriteMovieDao.checkIfMovieInFavoriteList(movieId)
+    }
 }

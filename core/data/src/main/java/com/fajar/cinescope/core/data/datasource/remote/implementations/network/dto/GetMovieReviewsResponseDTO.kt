@@ -33,9 +33,6 @@ internal data class GetMovieReviewsResponseItemDTO(
 @Serializable
 internal data class AuthorDetailsDTO(
 
-    @SerialName("name")
-    val name: String? = null,
-
     @SerialName("rating")
     val rating: Double? = null,
 

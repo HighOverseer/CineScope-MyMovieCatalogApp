@@ -14,6 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.fajar.cinescope.core.ui.theme.CineScopeAppTheme
+import com.fajar.cinescope.core.ui.utils.navigateSafely
+import com.fajar.cinescope.movie_detail.presentation.navigation.MovieDetailNavigation
+import com.fajar.cinescope.movie_detail.presentation.navigation.movieDetailNavGraph
 import com.fajar.cinescope.movie_previews.presentation.navigation.ListMoviePreviewsNavigation
 import com.fajar.cinescope.movie_previews.presentation.navigation.listMoviePreviewsNavGraph
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,9 +34,14 @@ class MainActivity : ComponentActivity() {
                 ){
                     listMoviePreviewsNavGraph(
                         openMovieDetail = { movieId ->
-
+                            navController.navigateSafely(
+                                MovieDetailNavigation.Graph(
+                                    movieId = movieId
+                                )
+                            )
                         }
                     )
+                    movieDetailNavGraph(navController = navController)
                 }
             }
         }

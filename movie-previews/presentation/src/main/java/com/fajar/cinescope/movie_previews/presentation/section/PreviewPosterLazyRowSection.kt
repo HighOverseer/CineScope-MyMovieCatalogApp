@@ -95,8 +95,7 @@ internal fun PreviewPosterLazyRowSection(
                     is ListPreviewsDataState.Loaded -> {
                         items(state.previewsData, { it.id }) { item ->
                             MoviePreviewItemPosterCard(
-                                modifier = Modifier
-                                    .clickable { onItemClicked(item) },
+                                onClick = { onItemClicked(item) },
                                 dui = item,
                             )
                         }

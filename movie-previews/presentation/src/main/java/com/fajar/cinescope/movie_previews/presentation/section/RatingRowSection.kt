@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fajar.cinescope.core.ui.theme.Grey47
 import com.fajar.cinescope.movie_previews.presentation.R
-
+import com.fajar.cinescope.core.ui.R as CoreR
 @Composable
 internal fun RatingRowSection(
     modifier: Modifier = Modifier,
@@ -57,6 +57,6 @@ internal fun RatingRowSection(
 
         Spacer(Modifier.width(4.dp))
 
-        starComposable(R.drawable.ic_star)
+        starComposable(CoreR.drawable.ic_star)
     }
 }

@@ -49,7 +49,9 @@ internal class MovieRemoteDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun getMovieDetail(selectedMovieId: Long): Result<MovieDetailData, DataError> {
+    override suspend fun getMovieDetail(
+        selectedMovieId: Long
+    ): Result<MovieDetailData, DataError> {
         return withContext(dispatcherProvider.default) {
             callApiFromNetwork(
                 execute = {

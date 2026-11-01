@@ -13,7 +13,12 @@ interface MovieRepository {
         movieCategory: MovieCategory
     ): Result<List<MoviePreviewsItemData>, DataError>
 
+    suspend fun getMovieDetail(
+        selectedMovieId: Long
+    ): Result<MovieDetailData, DataError>
+
     fun getListFavoriteMovies(): Flow<List<FavoriteMovieItemData>>
+    fun checkIsMovieInFavoriteList(movieId: Long): Flow<Boolean>
     suspend fun addFavoriteMovie(movieDetailData: MovieDetailData)
     suspend fun deleteFromListFavorite(movieId: Long)
 }

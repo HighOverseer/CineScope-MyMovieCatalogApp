@@ -17,4 +17,7 @@ internal interface FavoriteMovieDao {
 
     @Query("DELETE FROM Favorite_Movie WHERE id = :movieId")
     suspend fun deleteFromListFavorite(movieId: Long)
+
+    @Query("SELECT EXISTS(SELECT 1 FROM Favorite_Movie WHERE id = :movieId)")
+    fun checkIfMovieInFavoriteList(movieId: Long): Flow<Boolean>
 }

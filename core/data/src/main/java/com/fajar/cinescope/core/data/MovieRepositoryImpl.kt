@@ -21,6 +21,16 @@ internal class MovieRepositoryImpl @Inject constructor(
         return remoteDataSource.getMoviePreviews(movieCategory)
     }
 
+    override suspend fun getMovieDetail(
+        selectedMovieId: Long
+    ): Result<MovieDetailData, DataError> {
+        return remoteDataSource.getMovieDetail(selectedMovieId)
+    }
+
+    override fun checkIsMovieInFavoriteList(movieId: Long): Flow<Boolean> {
+        return localDataSource.checkIsMovieInFavoriteList(movieId)
+    }
+
     override fun getListFavoriteMovies(): Flow<List<FavoriteMovieItemData>> {
         return localDataSource.getListFavoriteMovies()
     }

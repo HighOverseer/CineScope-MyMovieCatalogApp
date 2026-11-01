@@ -8,4 +8,5 @@ internal interface MovieLocalDataSource {
     fun getListFavoriteMovies(): Flow<List<FavoriteMovieItemData>>
     suspend fun addFavoriteMovie(movieDetailData: MovieDetailData)
     suspend fun deleteFromListFavorite(movieId: Long)
+    fun checkIsMovieInFavoriteList(movieId: Long): Flow<Boolean>
 }
