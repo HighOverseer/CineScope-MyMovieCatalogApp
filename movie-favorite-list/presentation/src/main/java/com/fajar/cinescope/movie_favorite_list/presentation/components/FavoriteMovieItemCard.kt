@@ -140,19 +140,6 @@ fun FavoriteMovieItemCard(
 
 @Composable
 fun FavoriteMovieItemCardLoading(modifier: Modifier = Modifier) {
-    val cardModifier = remember {
-        modifier
-            .height(110.dp)
-            .background(color = Color.White, shape = RoundedCornerShape(8.dp))
-            .padding(12.dp)
-    }
-
-    val imageModifier = remember {
-        Modifier
-            .width(104.dp)
-            .clip(RoundedCornerShape(8.dp))
-    }
-
     val shimmeringBoxModifier = remember {
         modifier
             .height(17.dp)
