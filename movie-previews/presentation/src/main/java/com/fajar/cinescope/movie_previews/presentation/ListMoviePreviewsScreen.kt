@@ -2,125 +2,154 @@ package com.fajar.cinescope.movie_previews.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalRippleConfiguration
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RippleConfiguration
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.fajar.cinescope.core.domain.model.MovieCategory
 import com.fajar.cinescope.core.domain.model.MoviePreviewsItemData
 import com.fajar.cinescope.core.domain.model.Rating
+import com.fajar.cinescope.core.ui.theme.Black10
 import com.fajar.cinescope.core.ui.theme.CineScopeAppTheme
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
+import com.fajar.cinescope.core.ui.theme.Grey90
+import com.fajar.cinescope.core.ui.theme.Red50
+import com.fajar.cinescope.movie_previews.presentation.section.ListMoviePreviewsMainContent
 import kotlinx.collections.immutable.toImmutableList
 import com.fajar.cinescope.core.ui.R as CoreR
 
-
 @Composable
 internal fun ListMoviePreviewsScreen(
-    modifier: Modifier = Modifier,
-    topRatedPreviewsData: ImmutableList<MoviePreviewsItemData> = persistentListOf(),
-    nowPlayingPreviewsData: ImmutableList<MoviePreviewsItemData> = persistentListOf(),
+    viewModel: ListMoviePreviewsViewModel = hiltViewModel(),
     onNavigateToDetail: (Long) -> Unit = { }
 ) {
-    val scrollState = rememberScrollState()
+    LaunchedEffect(Unit) {
+        viewModel.refreshListPreviewsData()
+    }
 
-    Column(
+    val uiState by viewModel.uiState
+        .collectAsStateWithLifecycle()
+
+    ListMoviePreviewsScreen(
+        modifier = Modifier,
+        uiState = uiState,
+        onNavigateToDetail = onNavigateToDetail,
+        refreshListPreviewsData = viewModel::refreshListPreviewsData
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ListMoviePreviewsScreen(
+    modifier: Modifier = Modifier,
+    uiState: UIState = UIState(),
+    onNavigateToDetail: (Long) -> Unit = { },
+    onNavigateToListFavorite: () -> Unit = { },
+    refreshListPreviewsData: (MovieCategory?) -> Unit = { }
+) {
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val focusManager = LocalFocusManager.current
+
+    Scaffold(
+        containerColor = Color.White,
         modifier = modifier
             .fillMaxSize()
             .background(Color.White)
-            .verticalScroll(scrollState)
-    ) {
+            .nestedScroll(scrollBehavior.nestedScrollConnection)
+            .clickable(
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() },
+                onClick = { focusManager.clearFocus() }
+            ),
+        topBar = {
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors().copy(
+                    scrolledContainerColor = Color.White,
+                    containerColor = Color.White
+                ),
+                title = {
+                    Text(
+                        modifier = Modifier,
+                        text = "Movie Previews",
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = Black10
+                    )
+                },
+                scrollBehavior = scrollBehavior,
+                actions = {
+                    CompositionLocalProvider(
+                        LocalRippleConfiguration provides RippleConfiguration(
+                            color = Color.Black
+                        )
+                    ) {
+                        IconButton(
+                            onClick = onNavigateToListFavorite,
+                        ) {
+                            Icon(
+                                imageVector = ImageVector
+                                    .vectorResource(CoreR.drawable.ic_fav),
+                                contentDescription = stringResource(R.string.navigate_to_list_favorite),
+                                tint = Red50
+                            )
+                        }
+                    }
+                }
+            )
 
-        PreviewLazyRowSection(
-            sectionTitle = stringResource(R.string.top_rated),
-            previewsData = topRatedPreviewsData,
-            leadingIconResId = R.drawable.ic_glowing_star
-        )
-
-        Spacer(Modifier.height(16.dp))
-
-        PreviewLazyRowSection(
-
-            sectionTitle = stringResource(R.string.now_playing),
-            previewsData = topRatedPreviewsData,
-            leadingIconResId = R.drawable.ic_musical_note
-        )
-
-    }
-}
-
-@Composable
-fun PreviewLazyRowSection(
-    modifier: Modifier = Modifier,
-    sectionTitle: String,
-    leadingIconResId: Int,
-    previewsData: ImmutableList<MoviePreviewsItemData>,
-    onItemClicked: (MoviePreviewsItemData) -> Unit = { },
-) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        SectionHeadline(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(start = 16.dp, end = 2.dp),
-            leadingIconResId = leadingIconResId,
-            trailingIconResId = CoreR.drawable.ic_arrow_right,
-            title = sectionTitle.uppercase()
-        )
-
-        Spacer(
-            Modifier.height(2.dp)
-        )
-
-        val topRatedPreviewsListState = rememberLazyListState()
-
-        LazyRow(
-            contentPadding = PaddingValues(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            state = topRatedPreviewsListState
+        }
+    ) { innerPadding ->
+        Column(
+            Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
         ) {
-            items(previewsData, { it.id }) { item ->
-                MoviePreviewItemCard(
-                    modifier = Modifier
-                        .clickable { onItemClicked(item) },
-                    dui = item,
-                )
-            }
+            ListMoviePreviewsMainContent(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = Grey90),
+                uiState = uiState,
+                onNavigateToDetail = onNavigateToDetail,
+                refreshListPreviewsData = refreshListPreviewsData,
+            )
         }
     }
 }
+
 
 @Preview
 @Composable
 private fun ListMoviePreviewsScreenPreview() {
     CineScopeAppTheme {
-        ListMoviePreviewsScreen(
-            topRatedPreviewsData = remember {
+        val uiState = remember {
+            val previewsDataState = ListPreviewsDataState.Loaded(
                 List(10) {
                     MoviePreviewsItemData(
                         id = it.toLong(),
-                        title = "Headset Nexus A1",
+                        title = "Blade Runner 2049",
                         thumbnailImageUrl = "image.com",
                         rating = Rating(
                             relativeScore = 8.0,
@@ -129,21 +158,14 @@ private fun ListMoviePreviewsScreenPreview() {
                         ),
                     )
                 }.toImmutableList()
-            },
-            nowPlayingPreviewsData = remember {
-                List(10) {
-                    MoviePreviewsItemData(
-                        id = it.toLong(),
-                        title = "Headset Nexus A1",
-                        thumbnailImageUrl = "image.com",
-                        rating = Rating(
-                            relativeScore = 8.0,
-                            maxScore = 10.0,
-                            count = 1080
-                        ),
-                    )
-                }.toImmutableList()
-            }
-        )
+            )
+
+            UIState(
+                popularMoviePreviewsDataState = previewsDataState,
+                topRatedMoviePreviewsDataState = previewsDataState,
+                nowPlayingMoviePreviewsDataState = previewsDataState
+            )
+        }
+        ListMoviePreviewsScreen(uiState = uiState)
     }
 }

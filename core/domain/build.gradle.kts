@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
@@ -18,6 +20,9 @@ kotlin {
         }
         minSdk = 24
 
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
         withHostTestBuilder {
         }
 
