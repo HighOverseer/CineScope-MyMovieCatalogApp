@@ -1,5 +1,7 @@
 package com.fajar.cinescope.core.data.dependency_injection
 
+import com.fajar.cinescope.core.data.datasource.local.MovieLocalDataSource
+import com.fajar.cinescope.core.data.datasource.local.implementation.MovieLocalDataSourceImpl
 import com.fajar.cinescope.core.data.datasource.remote.MovieRemoteDataSource
 import com.fajar.cinescope.core.data.datasource.remote.implementations.MovieRemoteDataSourceImpl
 import dagger.Binds
@@ -16,4 +18,8 @@ internal abstract class DataSourceModule {
         remoteDataSourceImpl: MovieRemoteDataSourceImpl
     ): MovieRemoteDataSource
 
+    @Binds
+    abstract fun bindMovieLocalDataSource(
+        localDataSourceImpl: MovieLocalDataSourceImpl
+    ): MovieLocalDataSource
 }

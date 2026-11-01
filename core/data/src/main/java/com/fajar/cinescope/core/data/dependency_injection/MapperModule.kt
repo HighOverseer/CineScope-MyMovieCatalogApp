@@ -1,8 +1,9 @@
 package com.fajar.cinescope.core.data.dependency_injection
 
 import com.fajar.cinescope.core.data.BuildConfig
-import com.fajar.cinescope.core.data.datasource.remote.implementations.network.mapper.MapperToDomain
+import com.fajar.cinescope.core.data.datasource.local.implementation.mapper.LocalDataMapperToDomain
 import com.fajar.cinescope.core.data.datasource.remote.implementations.network.mapper.MovieImageUrlResolver
+import com.fajar.cinescope.core.data.datasource.remote.implementations.network.mapper.RemoteDataMapperToDomain
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,9 +16,13 @@ internal object MapperModule {
 
     @Provides
     @Singleton
-    fun provideMapperToDomain(
+    fun provideRemoteDataMapperToDomain(
         movieImageUrlResolver: MovieImageUrlResolver
-    ): MapperToDomain = MapperToDomain(movieImageUrlResolver)
+    ): RemoteDataMapperToDomain = RemoteDataMapperToDomain(movieImageUrlResolver)
+
+    @Provides
+    @Singleton
+    fun provideLocalDataMapperToDomain(): LocalDataMapperToDomain = LocalDataMapperToDomain()
 
     @Provides
     @Singleton

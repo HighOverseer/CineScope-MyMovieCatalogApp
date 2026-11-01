@@ -12,6 +12,7 @@ kotlin = "2.4.20"
 composeBom = "2026.02.01"
 kotlinStdlib = "2.2.10"
 kotlinTest = "2.2.10"
+room3Runtime = "3.0.3"
 runner = "1.5.2"
 core = "1.5.0"
 appcompat = "1.6.1"
@@ -25,9 +26,12 @@ mokkery = "3.5.0"
 daggerHilt = "2.60.1"
 hilt_navigation = "1.4.0"
 ksp = "2.3.10"
+androidx-annotation-experimental = "1.5.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-room3-compiler = { module = "androidx.room3:room3-compiler", version.ref = "room3Runtime" }
+androidx-room3-runtime = { module = "androidx.room3:room3-runtime", version.ref = "room3Runtime" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -50,6 +54,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-annotation-experimental = { module = "androidx.annotation:annotation-experimental", version.ref = "androidx-annotation-experimental" }
 
 # Ktor
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
