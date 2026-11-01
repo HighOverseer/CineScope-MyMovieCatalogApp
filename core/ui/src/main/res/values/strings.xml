@@ -8,4 +8,7 @@
     <string name="sorry_the_server_seems_busy_please_try_again_later">Sorry, the server seems to be busy. Please try again later.</string>
     <string name="invalid_session_please_try_again">Your session is invalid. Please try again.</string>
     <string name="okay">Okay</string>
+    <string name="rate_star">Rate Star</string>
+    <string name="ratings">%1$s Ratings</string>
+    <string name="navigate_back_to_previous_screen">Navigate Back to Previous Screen</string>
 </resources>

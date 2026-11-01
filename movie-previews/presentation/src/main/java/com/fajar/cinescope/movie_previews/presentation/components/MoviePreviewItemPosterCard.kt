@@ -32,12 +32,12 @@ import androidx.compose.ui.unit.sp
 import com.fajar.cinescope.core.domain.model.MoviePreviewsItemData
 import com.fajar.cinescope.core.domain.model.Rating
 import com.fajar.cinescope.core.ui.components.BaseAsyncImage
+import com.fajar.cinescope.core.ui.section.RatingRowSection
 import com.fajar.cinescope.core.ui.theme.Black10
 import com.fajar.cinescope.core.ui.theme.CineScopeAppTheme
 import com.fajar.cinescope.core.ui.theme.Orange85
 import com.fajar.cinescope.core.ui.utils.formatDecimalPlaces
-import com.fajar.cinescope.movie_previews.presentation.R
-import com.fajar.cinescope.movie_previews.presentation.section.RatingRowSection
+import com.fajar.cinescope.core.ui.R as CoreR
 
 @Composable
 internal fun MoviePreviewItemPosterCard(
@@ -114,7 +114,7 @@ internal fun MoviePreviewItemPosterCard(
                         .padding(horizontal = 4.dp, vertical = 2.dp)
                 ) {
                     Text(
-                        text = stringResource(R.string.ratings, dui.rating?.count ?: "-"),
+                        text = stringResource(CoreR.string.ratings, dui.rating?.count ?: "-"),
                         color = Color.White,
                         style = MaterialTheme.typography.bodySmall,
                         fontSize = 11.sp

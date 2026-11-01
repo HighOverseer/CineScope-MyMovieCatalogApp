@@ -7,7 +7,8 @@ import androidx.navigation.navigation
 import com.fajar.cinescope.movie_previews.presentation.ListMoviePreviewsScreen
 
 fun NavGraphBuilder.listMoviePreviewsNavGraph(
-    openMovieDetail: (Long) -> Unit
+    openMovieDetail: (Long) -> Unit,
+    openListFavoriteMovies: () -> Unit
 ) {
     navigation<ListMoviePreviewsNavigation.Graph>(
         startDestination = ListMoviePreviewsNavigation.ListPreviewsRoute
@@ -15,7 +16,8 @@ fun NavGraphBuilder.listMoviePreviewsNavGraph(
         composable<ListMoviePreviewsNavigation.ListPreviewsRoute> {
             ListMoviePreviewsScreen(
                 viewModel = hiltViewModel(),
-                onNavigateToDetail = openMovieDetail
+                onNavigateToDetail = openMovieDetail,
+                onNavigateToListFavorite = openListFavoriteMovies
             )
         }
     }

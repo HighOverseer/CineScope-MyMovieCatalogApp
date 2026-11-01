@@ -1,4 +1,4 @@
-package com.fajar.cinescope.movie_previews.presentation.section
+package com.fajar.cinescope.core.ui.section
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
@@ -20,11 +20,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.fajar.cinescope.core.ui.R
 import com.fajar.cinescope.core.ui.theme.Grey47
-import com.fajar.cinescope.movie_previews.presentation.R
-import com.fajar.cinescope.core.ui.R as CoreR
+
 @Composable
-internal fun RatingRowSection(
+fun RatingRowSection(
     modifier: Modifier = Modifier,
     displayRating: String,
     textSize: TextUnit = 14.sp,
@@ -57,6 +57,6 @@ internal fun RatingRowSection(
 
         Spacer(Modifier.width(4.dp))
 
-        starComposable(CoreR.drawable.ic_star)
+        starComposable(R.drawable.ic_star)
     }
 }

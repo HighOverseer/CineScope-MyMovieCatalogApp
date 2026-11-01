@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="rate_star">Rate Star</string>
     <string name="popular_movie">Popular Movie</string>
     <string name="top_rated">Top Rated</string>
     <string name="now_playing">Now Playing</string>
     <string name="retry">Retry</string>
-    <string name="ratings">%1$s Ratings</string>
     <string name="navigate_to_list_favorite">Navigate to List Favorite</string>
+    <string name="movie_previews">Movie Previews</string>
 </resources>

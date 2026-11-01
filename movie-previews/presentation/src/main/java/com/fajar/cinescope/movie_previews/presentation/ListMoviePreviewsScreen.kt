@@ -45,7 +45,8 @@ import com.fajar.cinescope.core.ui.R as CoreR
 @Composable
 internal fun ListMoviePreviewsScreen(
     viewModel: ListMoviePreviewsViewModel = hiltViewModel(),
-    onNavigateToDetail: (Long) -> Unit = { }
+    onNavigateToDetail: (Long) -> Unit = { },
+    onNavigateToListFavorite: () -> Unit = { }
 ) {
     LaunchedEffect(Unit) {
         viewModel.refreshListPreviewsData()
@@ -58,6 +59,7 @@ internal fun ListMoviePreviewsScreen(
         modifier = Modifier,
         uiState = uiState,
         onNavigateToDetail = onNavigateToDetail,
+        onNavigateToListFavorite = onNavigateToListFavorite,
         refreshListPreviewsData = viewModel::refreshListPreviewsData
     )
 }
@@ -94,7 +96,7 @@ private fun ListMoviePreviewsScreen(
                 title = {
                     Text(
                         modifier = Modifier,
-                        text = "Movie Previews",
+                        text = stringResource(R.string.movie_previews),
                         style = MaterialTheme.typography.headlineLarge,
                         color = Black10
                     )
